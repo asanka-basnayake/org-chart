@@ -11,9 +11,10 @@ import "./custom-styles.css"
 // import defaultNodes from "./nodes.js";
 // import defaultEdges from "./edges.js";
 import { convertTreeToReactFlow, treeData } from "../utils/convertTreeToReactFlow.js"
+import DownloadButton from "./DownloadButton.jsx";
 
-const nodeWidth = 160;
-const nodeHeight = 75;
+const nodeWidth = 80;
+const nodeHeight = 120;
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -64,6 +65,7 @@ const nodeColor = (node) => {
 const CustomNode = ({ data, id, toggleCollapse, ...rest }) => {
   return (
     <div style={{ padding: '10px' }} className="node_box">
+      <div className="node_header"></div>
       <img src={data.img} alt="" width={40} height={40} className="avatar" />
       <div className="details">
         <p className="name"> {data.label} </p>
@@ -74,6 +76,7 @@ const CustomNode = ({ data, id, toggleCollapse, ...rest }) => {
       </div>
       <Handle type="target" position="top" />
       <Handle type="source" position="bottom" />
+      <div className="node_footer"></div>
     </div>
   );
 };
@@ -179,15 +182,16 @@ function Flow() {
 
           pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
           // pdf.addImage(svgImgData, 'PNG', 0, position, pdfWidth, pdfHeight);
-          pdf.addImage(svgImgData, 0,  0, 50, 10)
+          // pdf.addImage(svgImgData, 0,  0, 50, 10)
+          // pdf.addImage(svgImgData, (sourceX - 80 )* 0.415,  0, Math.abs(sourceX - targetX), 10)
           heightLeft -= pdf.internal.pageSize.getHeight();
 
-          while (heightLeft >= 0) {
-            position = heightLeft - pdfHeight;
-            // pdf.addPage();
-            // pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
-            heightLeft -= pdf.internal.pageSize.getHeight();
-          }
+          // while (heightLeft >= 0) {
+          //   position = heightLeft - pdfHeight;
+          //   pdf.addPage();
+          //   pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, pdfHeight);
+          //   heightLeft -= pdf.internal.pageSize.getHeight();
+          // }
 
           pdf.save(opt.filename);
           resolve("ok")
@@ -229,6 +233,7 @@ function Flow() {
             [0, 0]
           </div>
         </ViewportPortal> */}
+        {/* <DownloadButton /> */}
       </ReactFlow>
     </div>
 

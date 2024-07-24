@@ -4,6 +4,10 @@
 
 .node_box {
     display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+    width: 80px;
+    align-items: center;
 }
 .node_box .avatar {
     object-fit: cover;
@@ -12,6 +16,20 @@
 .node_box .collaps_btn {
     font-size: 0.61rem;
     padding: 0 10px;
+}
+
+.node_box .node_header {
+    background-color: #383F50;
+    border-radius: 3px 3px 0 0;
+    height: 15px;
+    width: 100%;
+}
+
+.node_box .node_footer {
+    background-color: #383F50;
+    border-radius: 0 0 3px 3px;
+    height: 15px;
+    width: 100%;
 }
 
 .details .name {
@@ -29,3 +47,8 @@
     width: fit-content;
 }
 
+.react-flow__edges svg{
+    overflow: visible;
+    width: 1000px;
+    height: 1000px;
+}
