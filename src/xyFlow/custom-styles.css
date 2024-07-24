@@ -1,0 +1,31 @@
+.react-flow__handle {
+    opacity: 0;
+}
+
+.node_box {
+    display: flex;
+}
+.node_box .avatar {
+    object-fit: cover;
+}
+
+.node_box .collaps_btn {
+    font-size: 0.61rem;
+    padding: 0 10px;
+}
+
+.details .name {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+}
+
+.details .team{
+    font-family: sans-serif;
+    font-size: 0.5rem;
+    padding: 0 3px;
+    background: lightblue;
+    border-radius: 3px;
+    text-align: center;
+    width: fit-content;
+}
+
