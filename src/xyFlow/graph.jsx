@@ -1,5 +1,5 @@
 import { ReactFlow, MiniMap, Controls, Background, Handle, getSmoothStepPath,
-  useOnViewportChange } from "@xyflow/react";
+  useOnViewportChange, ViewportPortal } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import dagre from 'dagre';
 import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
@@ -12,9 +12,10 @@ import "./custom-styles.css"
 // import defaultEdges from "./edges.js";
 import { convertTreeToReactFlow, treeData } from "../utils/convertTreeToReactFlow.js"
 import DownloadButton from "./DownloadButton.jsx";
+import DataLayersController from "./DataLayersController.jsx";
 
-const nodeWidth = 80;
-const nodeHeight = 120;
+const nodeWidth = 120;
+const nodeHeight = 180;
 
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -65,12 +66,40 @@ const nodeColor = (node) => {
 const CustomNode = ({ data, id, toggleCollapse, ...rest }) => {
   return (
     <div style={{ padding: '10px' }} className="node_box">
-      <div className="node_header"></div>
-      <img src={data.img} alt="" width={40} height={40} className="avatar" />
-      <div className="details">
-        <p className="name"> {data.label} </p>
-        <p className="team"> {data.team} </p>
+      <div className="node_header">
+        <p>{data.team}</p>
+        <div className="edit_icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+        </svg>
+        </div>
       </div>
+      <div className="avatar_wrapper">
+        <div className="avatar_render" style={{ backgroundImage: `url('${data.img}')`}}>
+          {/* <img src={data.img} alt="" width={40} height={40} className="avatar" /> */}
+        </div>
+        <div className="details">
+          <p className="name"> {data.label} </p>
+          <p className="team"> {data.team} </p>
+        </div>
+      </div>
+      <div className="custom_details">
+        <p>Mission</p>
+        <p>...</p>
+        {/* <p>aintain financial health while supporting innovative safety initiatives</p>
+
+        <p>Responsibilities</p>
+        <p>Care and feeding of cats. And by “cats” we mean engineers and technology people of similar ilk.</p>
+
+        <p>KPIs</p>
+        <ul>
+          <li>90% of all cats arrived at destination.</li>
+          <li>8 new cats added.</li>
+          <li>48 litter boxes changes /week.</li>
+        </ul> */}
+      </div>
+
+      
       <div onClick={() => toggleCollapse(id)} className="collaps_btn">
         {data.collapsed ? <CaretDownOutlined /> : <CaretUpOutlined />}
       </div>
@@ -234,6 +263,7 @@ function Flow() {
           </div>
         </ViewportPortal> */}
         {/* <DownloadButton /> */}
+        <DataLayersController />
       </ReactFlow>
     </div>
 
