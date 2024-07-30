@@ -44,7 +44,7 @@
 .node_box .node_footer {
     background-color: #383F50;
     border-radius: 0 0 3px 3px;
-    height: 15px;
+    height: 20px;
     width: 100%;
 }
 
@@ -112,7 +112,16 @@
     display: flex;
     padding: 30px;
     flex-direction: column;
+
+    background: #add8e640;
+    width: 275px;
+    border-radius: 15px;
+    margin: 15px;
+    height: 150px;
+    z-index: 1000;
+    position: absolute;
 }
+
 .data_filters_menu .search_wrapper {
     height: 30px;
     display: flex;
@@ -120,4 +129,15 @@
 .data_filters_menu .search_wrapper span  svg{
     height: 30px;
     padding: 0 10px;
+}
+
+.footer_controls {
+    padding: 3px;
+    display: flex;
+    justify-content: end;
+}
+
+.node_box:hover .footer_controls svg {
+    height: 15px;
+    color: white;
 }

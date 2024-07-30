@@ -13,6 +13,7 @@ import "./custom-styles.css"
 import { convertTreeToReactFlow, treeData } from "../utils/convertTreeToReactFlow.js"
 import DownloadButton from "./DownloadButton.jsx";
 import DataLayersController from "./DataLayersController.jsx";
+import CardFooterControls from "./CardFooter.jsx"
 
 const nodeWidth = 120;
 const nodeHeight = 180;
@@ -105,7 +106,9 @@ const CustomNode = ({ data, id, toggleCollapse, ...rest }) => {
       </div>
       <Handle type="target" position="top" />
       <Handle type="source" position="bottom" />
-      <div className="node_footer"></div>
+      <div className="node_footer">
+        <CardFooterControls />
+      </div>
     </div>
   );
 };
